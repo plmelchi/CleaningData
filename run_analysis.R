@@ -12,7 +12,7 @@ ytrain<-read.table("y_train.txt")
 subjecttest<-read.table("subject_test.txt")
 subjecttrain<-read.table("subject_train.txt")
 
-##Create two factors for activities by joing Load the activity for each record:
+##Create two factors for activities by joining the activity for each record:
 ytestact<-cut(ytest[[1]],6,labels=c("WALKING", "WALKING_UPSTAIRS","WALKING_DOWNSTAIRS","SITTING","STANDING","LAYING"))
 ytrainact<-cut(ytrain[[1]],6,labels=c("WALKING", "WALKING_UPSTAIRS","WALKING_DOWNSTAIRS","SITTING","STANDING","LAYING"))
 
@@ -42,10 +42,6 @@ tidyfeatures<-gsub("meanfreq","meanfrequency",tidyfeatures)
 ##Replaces the names of the datasets' columns with the members in tidyfeatures vector
 names(testset)<-tidyfeatures
 names(trainset)<-tidyfeatures
-
-##Replaces the names of the datasets' columns with the members in tidyfeatures vector
-##colnames(testset)<- features[,2]
-##colnames(trainset)<- features[,2]
 
 ##Add factor with activity to the dataset
 testset<-cbind(testset,ytestact)
@@ -77,3 +73,6 @@ meangroupbyframe<- (meansdframe%>% group_by(subject,activity) %>% summarise_each
 
 ##Show the frame
 print(meangroupbyframe)
+
+##Export the dataset as a csv file
+write.csv(meangroupbyframe, file = "meangroupbyframe.csv",row.names=FALSE)
