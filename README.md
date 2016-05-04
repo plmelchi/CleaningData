@@ -1,11 +1,5 @@
 ---
-title: "Getting and Cleaning Data - Final Work"
-output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+# Getting and Cleaning Data - Final Work - README
 
 It was used a single R script called "run_analysis.R".
 
